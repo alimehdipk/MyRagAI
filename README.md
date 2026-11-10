@@ -12,6 +12,31 @@ MyRagAI is a native macOS app for asking questions across your PDFs, documents, 
 
 > Early development release. Retrieval currently uses keywords, not vector embeddings. Cloud connections send selected excerpts and recent chat text to your chosen provider. Local indexing does not mean every AI connection is offline.
 
+## Download the app
+
+Get the compiled app from [GitHub Releases](https://github.com/alimehdipk/MyRagAI/releases). Under **Assets**, download the **AppleSilicon.zip** build for an M-series Mac or **Intel.zip** for an Intel Mac. Extract it and move **MyRagAI.app** to **Applications**. No Xcode or source code is needed.
+
+Early builds are ad-hoc signed and are not Apple-notarized. If macOS blocks the first launch and you trust the download, open **System Settings → Privacy & Security → Open Anyway**. Requires macOS 14 or newer.
+
+## Publishing a release
+
+The release workflow builds and checks both Mac architectures when a numeric version tag is pushed. Commit the workflow and packaging changes first, then run:
+
+```sh
+git tag -a v0.1.4 -m "MyRagAI 0.1.4"
+git push origin v0.1.4
+```
+
+Watch the **Actions → Release macOS app** run. After both builds succeed, it publishes a release with two app ZIPs and SHA-256 checksums. Use a new tag (for example `v0.1.5`) for each subsequent release; the tag determines the app's version. Release tags must use `vMAJOR.MINOR.PATCH`.
+
+To package only your current Mac's architecture locally:
+
+```sh
+bash scripts/package-release.sh 0.1.4
+```
+
+Archives appear in `dist/releases/`. Signing with a Developer ID and Apple notarization are not configured in this workflow.
+
 ## Screenshots
 
 These are captures of the running macOS app using a separate, in-memory sample workspace. The example answer is prewritten demonstration content; no private documents, API keys, or personal conversations are shown.
