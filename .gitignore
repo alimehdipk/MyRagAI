@@ -1,0 +1,18 @@
+.build/
+dist/
+.DS_Store
+*.xcuserstate
+.swiftpm/
+
+# Generated artwork originals and temporary exports
+generated_images/
+*.zip
+
+# Local credentials and workspace data
+.env
+.env.*
+!.env.example
+workspace.json
+*.p12
+*.p8
+*.key
